@@ -1,4 +1,5 @@
 <?php
+//copied from facebook dev docs https://developers.facebook.com/docs/games/gamesonfacebook/login#usingsignedreques
 require_once('./config.php');
 
 function base64_url_decode($input) {

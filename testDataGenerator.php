@@ -1,4 +1,5 @@
 <?php
+//This tool generates ~1000000 records for 100000 users spanning two weeks(last and current)
 require_once('./config.php');
 
 try {
@@ -14,6 +15,7 @@ $week_days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'
 
 foreach (['last week', 'this week'] as $week) {
     foreach ($week_days as $day) {
+        //do not populate future days of current week
         if ('this week' == $week && $week_days[(date("w", strtotime("tomorrow")) - 1)] == $day) {
             break 2;
         }
