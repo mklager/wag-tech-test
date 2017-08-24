@@ -94,6 +94,12 @@ WHERE
         }
     }
 
+
+
+    usort($improvedPlayersCleanUp, "sortScores");
+
+    $improvedPlayersCleanUp = array_slice($improvedPlayersCleanUp, -10);//get 10 highest improvements
+
     http_response_code(200);
     header("Content-type:application/json");
     $response = array(
@@ -103,4 +109,14 @@ WHERE
         'Improved players' => $improvedPlayersCleanUp
     );
     echo json_encode($response);
+}
+
+function sortScores($a, $b)
+{
+    $left = $a['new_best'];
+    $right= $b['new_best'];
+    if ($left == $right) {
+        return 0;
+    }
+    return ($left < $right) ? -1 : 1;
 }
